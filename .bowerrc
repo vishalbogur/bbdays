@@ -1,0 +1,5 @@
+{
+    "directory": "./",
+    "proxy": "http://127.0.0.1:8888",
+    "https-proxy": "http://127.0.0.1:8888"
+}

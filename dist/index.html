@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+
+      <title>Operational Buffer</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+      <meta http-equiv="cache-control" content="no-cache" />
+      <meta http-equiv="expires" content="0" />
+      <meta http-equiv="pragma" content="no-cache" />
+      <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type" />
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- code to prevent clickjacking starts, Don't use it in case of loading application in IFRAME -->
+      <!-- <meta http-equiv="X-Frame-Options" content="deny" /> -->
+
+      <style id="antiClickjack">
+          body {
+              display: none !important;
+          }
+      </style>
+
+      <script type="text/javascript">
+          if (self === top) {
+              var antiClickjack = document.getElementById("antiClickjack");
+              antiClickjack.parentNode.removeChild(antiClickjack);
+          } else {
+              top.location = self.location;
+          }
+      </script>
+      <!--clickjacking code finish -->
+
+      <!--    Link to favicon icon from LiWid -->
+      <link rel="shortcut icon" href="assets/imgs/favicon.ico">
+
+      <!--    Liwid stylesheets for Responsive Web Applications as per ABN AMRO Standards-->
+      <link rel="stylesheet" href="assets/styles/liwid.min.css" media="screen"/>
+
+        <!--    App specific stylesheet-->
+      <link rel="stylesheet" href="assets/styles/app.min.css" media="screen"/>
+
+            <!--    Table Sort directive specific stylesheet-->
+
+            <!-- Load all generic libraries below -->
+      <script src="assets/scripts/liwid.js"></script>
+
+      <!-- Load all application scripts below -->
+      <script src="assets/scripts/app.js"></script>
+
+  </head>
+
+  <body ng-app="opbApp">
+
+    <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span>
+
+    <aab-header></aab-header>
+    <div class="ocf-curtain hidden-lg hidden-md" style="height: 0px;"></div>
+
+    <div id="main" class="container-fluid" role="main" style="height: auto; overflow: visible;">
+      <div class="ng-scope">
+          <div class="row">
+              <div class="col-lg-12">
+                  <div class="row">
+                      <div class="col-md-10 col-md-offset-1">
+                          <div ng-view class="container-fluid ng-scope printSection">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>

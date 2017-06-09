@@ -1,0 +1,101 @@
+<div class="panel panel-default">
+	<div class="panel-heading" >
+		<button print-remove class="btn btn-default ocf-btn-back" ng-click="gotoSearch()" title="back"></button>
+		<span ng-click="gotoSearch();"  style="float:right"><span class="glyphicon glyphicon-lock"></span></span>
+		<h2 class="panel-title"><span>RETRO HOME</span></h2>
+	</div>
+	<div class="panel-body" id="screen-body" ng-cloak>
+		<div id="http-error-block"></div>
+
+		<div class="btn-group btn-group-justified" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-default" type="button" ng-click="showCreate = !showCreate ; showView = !showCreate ; loadTeamNames();">
+                        Create Board
+                        </button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-default" type="button" ng-click="showView = !showView ; showCreate = !showView; loadTeamNames();">
+													View Board</button>
+                    </div>
+                </div>
+ <div class="ng-hide" ng-show="showCreate">
+	 <br/>
+	 <fieldset class="ng-scope">
+    <legend>Create Retro Board</legend>
+		<span class="form-group form-group-first">
+        <label class="col-sm-2 control-label" for="userName">User Name</label>
+        <div class="col-sm-8">
+					<input class="form-control ng-isolate-scope ng-pristine ng-valid" id="userName" type="text" disabled="disabled" data-testid="input-userName" data-ng-model="userName" data-ng-class="align" data-limit="30" data-aab-numeric-input="">
+        </div>
+    </span>
+		<br/>
+    <span class="form-group form-group-first">
+        <label class="col-sm-2 control-label" for="retroname">Board Name</label>
+        <div class="col-sm-8">
+					<input class="form-control ng-isolate-scope ng-pristine ng-valid" id="retroname" type="text" placeholder="RETRO_SPRINTXX_TEAMNAME" data-testid="input-retroname" data-ng-model="retroname" data-ng-class="align" data-limit="30" data-aab-numeric-input="">
+        </div>
+    </span>
+		<br/>
+		<span class="form-group form-group-first">
+        <label class="col-sm-2 control-label" for="sprintid">Sprint Id</label>
+        <div class="col-sm-8">
+					<input class="form-control ng-isolate-scope ng-pristine ng-valid" id="sprintid" type="text" placeholder="SPRINTXX" data-testid="input-sprintid" data-ng-model="sprintid" data-ng-class="align" data-limit="30" data-aab-numeric-input="">
+        </div>
+    </span>
+		<br/>
+		<span class="form-group form-group-first">
+        <label class="col-sm-2 control-label" for="teamName">Team</label>
+        <div class="col-sm-8">
+					<select class="form-control" id="teamName" data-ng-model="teamName">
+						 <option ng-repeat="team in teamNames" value="{{team.teamname}}${{team.teamid}}">{{team.teamname}}</option>
+				 </select>
+        </div>
+				<div ng-class="{'has-warning has-feedback' : emptyTeamNames()}">
+					<span class="glyphicon form-control-feedback" ng-if="emptyTeamNames()"></span>
+					<span class="help-block" ng-show="emptyTeamNames()">No teams present</span>
+				</div>
+    </span></br>
+		<button type="submit" class="btn btn-primary" ng-click="createBoard()" ng-disabled="searchform.$invalid">
+			<span>Create Board</span>
+		</button>
+</fieldset>
+ </div>
+ <div class="ng-hide" ng-show="showView">
+	 <br/>
+	 <fieldset class="ng-scope">
+    <legend>View Retro Board</legend>
+		<div class="form-group form-group-first">
+        <label class="col-sm-2 control-label" for="teamnameSearch">Select Team Name</label>
+        <div class="col-sm-6">
+					<select class="form-control" id="teamnameSearch" data-ng-model="teamnameSearch" ng-change="loadBoardNames()">
+						 <option ng-repeat="team in teamNames" value="{{team.teamname}}${{team.teamid}}">{{team.teamname}}</option>
+				 </select>
+        </div>
+				<div ng-class="{'has-warning has-feedback' : emptyTeamNames()}">
+					<span class="glyphicon form-control-feedback" ng-if="emptyTeamNames()"></span>
+					<span class="help-block" ng-show="emptyTeamNames()">No teams present</span>
+				</div>
+    </div>
+		<br/>
+    <div class="form-group form-group-first">
+        <label class="col-sm-2 control-label" for="retronameSearch">Select Board Name</label>
+        <div class="col-sm-6">
+					<select class="form-control" id="retronameSearch" data-ng-model="retronameSearch">
+						 <option ng-repeat="board in boardNames" value="{{board.boardId}}${{board.boardName}}${{board.sprintId}}">{{board.boardName}}</option>
+				 </select>
+        </div>
+				<div ng-class="{'has-warning has-feedback' : emptyBoardNames()}">
+					<span class="glyphicon form-control-feedback" ng-if="emptyBoardNames()"></span>
+					<span class="help-block" ng-show="emptyBoardNames()">No Retro Boards present</span>
+				</div>
+    </div>
+		<button type="button" class="btn btn-primary" ng-click="searchBoard()" ng-disabled="searchform.$invalid">
+			<span>Search Board</span>
+		</button>
+</fieldset>
+
+ </div>
+
+</div>
+	</div><!-- panel-body -->
+</div><!-- panel -->

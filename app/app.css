@@ -1,0 +1,92 @@
+<!--    Style to hide unrendered angular elements-->
+
+        [ng-cloak],
+        [data-ng-cloak],
+        [x-ng-cloak],
+        .ng-cloak,
+        .x-ng-cloak,
+        .ng-hide {
+            display: none !important;
+        }
+
+        ng\:form {
+            display: block;
+        }
+
+        .ng-animate-block-transitions {
+            transition: 0s all!important;
+            -webkit-transition: 0s all!important;
+        }
+
+        .ng-hide-add-active,
+        .ng-hide-remove {
+            display: block!important;
+        }
+        .filter {
+               display: none;
+           }
+
+           .filterShow {
+               display: block;
+               padding-right: 50px;
+           }
+
+           .filterShow input {
+               outline: none;
+               border: none;
+               height: 30px;
+               padding-right: 25px;
+               color: black;
+           }
+
+       .row-selection-imp:hover {
+           background: #CBE3E3 !important;
+           cursor: pointer !important;
+       }
+
+
+         .table-responsive {
+           width: 100%;
+           margin-bottom: 16.5px;
+           overflow-y: hidden;
+           overflow-x: auto;
+           /*-ms-overflow-style: -ms-autohiding-scrollbar;*/
+
+           -webkit-overflow-scrolling: touch; }
+           .table-responsive > .table {
+             margin-bottom: 0; }
+             .table-responsive > .table > thead > tr > th, .table-responsive > .table > thead > tr > td, .table-responsive > .table > tbody > tr > th, .table-responsive > .table > tbody > tr > td, .table-responsive > .table > tfoot > tr > th, .table-responsive > .table > tfoot > tr > td {
+               white-space: nowrap; }
+           .table-responsive > .table-bordered {
+             border: 0; }
+             .table-responsive > .table-bordered > thead > tr > th:first-child, .table-responsive > .table-bordered > thead > tr > td:first-child, .table-responsive > .table-bordered > tbody > tr > th:first-child, .table-responsive > .table-bordered > tbody > tr > td:first-child, .table-responsive > .table-bordered > tfoot > tr > th:first-child, .table-responsive > .table-bordered > tfoot > tr > td:first-child {
+               border-left: 0; }
+             .table-responsive > .table-bordered > thead > tr > th:last-child, .table-responsive > .table-bordered > thead > tr > td:last-child, .table-responsive > .table-bordered > tbody > tr > th:last-child, .table-responsive > .table-bordered > tbody > tr > td:last-child, .table-responsive > .table-bordered > tfoot > tr > th:last-child, .table-responsive > .table-bordered > tfoot > tr > td:last-child {
+               border-right: 0; }
+             .table-responsive > .table-bordered > tbody > tr:last-child > th, .table-responsive > .table-bordered > tbody > tr:last-child > td, .table-responsive > .table-bordered > tfoot > tr:last-child > th, .table-responsive > .table-bordered > tfoot > tr:last-child > td {
+               border-bottom: 0; }
+
+       .table-striped > tbody > tr:nth-child(odd){
+           background-color: #f9f9f9 ;
+       }
+
+       .table-striped > tbody > tr:nth-child(odd) > td{
+           background-color: transparent;
+       }
+
+
+
+       .form-control-feedback {
+         position: absolute;
+         top: 7px;
+         right: 7px;
+         z-index: 2;
+         display: block;
+         /*width: 36px;
+         height: 36px;*/
+         line-height: 36px;
+         text-align: center; }
+
+         input::-ms-clear {
+    display: none;
+}

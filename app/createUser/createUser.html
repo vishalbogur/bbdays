@@ -1,0 +1,77 @@
+<div class="panel panel-default">
+	<div class="panel-heading" >
+		<h2 class="panel-title"><span>CREATE USER</span></h2>
+		<button print-remove class="btn btn-default ocf-btn-back" ng-click="gotoSearch()" title="back"></button>
+	</div>
+	<div class="panel-body" ng-cloak>
+		<div id="http-error-block">	</div>
+		<div id ="searchblock">
+			<form class="form-horizontal ng-pristine ng-valid" name="searchform" ng-cloak>
+				<div class="bs-component ng-scope ng-isolate-scope">
+					<div ng-class="{'has-warning has-feedback' : isInvalidUserName()}">
+						<span class="glyphicon form-control-feedback" ng-if="isInvalidUserName()"></span>
+						<span class="help-block" ng-show="isInvalidUserName()">Invalid Username, Please choose unique name</span>
+					</div>
+					<fieldset class="ng-scope">
+						<div id="searchblock" style="display:block;">
+							<div class="form-group-first">
+								<div class="form-group" ng-class="{'has-warning has-feedback' : isEmailValid()}">
+									<label for="username" class="col-sm-6 col-xs-6 control-label">Username</label>
+									<div class="col-sm-4 col-xs-4">
+										<input class="w120 form-control"
+										name="username"
+										type="text" ng-pattern="/^[a-zA-Z0-9]*$/"
+										ng-required="true" placeholder="Enter Username"
+										ng-model="input.username" id="username" maxlength="30" on-keyup-fn="handleKeypress"/>
+									</div>
+								</div>
+							</div>
+							<div class="form-group-first">
+								<div class="form-group" >
+									<label for="password" class="col-sm-6 col-xs-6 control-label">Password</label>
+									<div class="col-sm-4 col-xs-4">
+										<input class="w120 form-control"
+										name="password"
+										type="password"
+										ng-required="true" placeholder="Enter password"
+										ng-model="input.password" id="password" maxlength="25" on-keyup-fn="handleKeypress"/>
+									</div>
+								</div>
+							</div>
+							<div class="form-group-first">
+								<div class="form-group" >
+									<label for="fname" class="col-sm-6 col-xs-6 control-label">First Name</label>
+									<div class="col-sm-4 col-xs-4">
+										<input class="w120 form-control"
+										name="fname"
+										type="text"
+										ng-required="true" placeholder="Enter first name"
+										ng-model="input.fname" id="fname" maxlength="25" on-keyup-fn="handleKeypress"/>
+									</div>
+								</div>
+							</div>
+							<div class="form-group-first">
+								<div class="form-group" >
+									<label for="lname" class="col-sm-6 col-xs-6 control-label">Last Name</label>
+									<div class="col-sm-4 col-xs-4">
+										<input class="w120 form-control"
+										name="lname"
+										type="text"
+										ng-required="true" placeholder="Enter Last name"
+										ng-model="input.lname" id="lname" maxlength="25" on-keyup-fn="handleKeypress"/>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div id="btnBlock">
+							<button type="submit" class="btn btn-primary" ng-click="createUser()" ng-disabled="searchform.$invalid">
+								<span>Create</span>
+							</button>
+						</div>
+					</fieldset>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

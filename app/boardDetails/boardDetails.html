@@ -1,0 +1,162 @@
+<div class="panel panel-default">
+	<div class="panel-heading" >
+		<button print-remove class="btn btn-default ocf-btn-back" ng-click="gotoReports()" title="back"></button>
+		 <span ng-click="logOut();"  style="float:right"><span class="glyphicon glyphicon-lock"></span></span>
+		<h2 class="panel-title"><span>RETRO DETAILS</span></h2>
+		<span print-remove print-btn class="glyphicon ocf-icon-large glyphicon-print pointer margin-right-10 float-right hidden-xs hidden-xxs" title="print"></span>
+  </div>
+	<div class="panel-body" ng-cloak>
+		<div id="http-error-block"></div>
+		<div class="well">
+			<div class="row">
+				<div><span class="col-xs-2 ocf-label-static">Board Name:</span>
+					<span>{{boardname}}</span>
+				</div>
+			</div>
+			<div class="row">
+				<div><span class="col-xs-2 ocf-label-static">Sprint Name:</span>
+					<span>{{sprintid}}</span>
+				</div>
+			</div>
+			<div class="row">
+				<div><span class="col-xs-2 ocf-label-static">Team Name:</span>
+					<span>{{teamName}}</span>
+				</div>
+			</div>
+		</div>
+</div>
+<div class="form-group form-group-last">
+        <div class="col-sm-2 col-sm-offset-10">
+            <button class="btn btn-block btn-default ocf-button-icon-right" ng-click="showComment = !showComment">
+            <span class="glyphicon ocf-icon-add ocf-icon-small"></span>
+            <span class="ocf-button-text-with-icon">Add Comment</span>
+            </button>
+        </div>
+    </div>
+		<div class="ng-hide" ng-show="showComment">
+	 	 <fieldset class="ng-scope">
+	     <h4>Add Retro Comment</h4>
+	 		<span class="form-group form-group-first">
+	         <label class="col-sm-2 control-label" for="userName">User Name</label>
+	         <div class="col-sm-8">
+	 					<input class="form-control ng-isolate-scope ng-pristine ng-valid" id="userName" type="text" disabled="disabled" data-testid="input-userName" data-ng-model="userName" data-ng-class="align" >
+	         </div>
+	     </span> <br/>
+	     <span class="form-group form-group-first">
+	         <label class="col-sm-2 control-label" for="description">Description</label>
+	         <div class="col-sm-8">
+	 					<input class="form-control ng-isolate-scope ng-pristine ng-valid" id="description" type="text" placeholder="Enter comment here" data-testid="input-description" data-ng-model="description" data-ng-class="align" data-limit="30" data-aab-numeric-input="">
+	         </div>
+	     </span><br/>
+	 		<span class="form-group form-group-first">
+	         <label class="col-sm-2 control-label" for="retrotype">Retro Type</label>
+	         <div class="col-sm-8">
+						 <select class="form-control" id="retrotype" ng-options="type.name for type in retroTypeOptions" data-ng-model="retrotype">
+            </select>
+	         </div>
+	     </span><br/>
+			 <span class="form-group form-group-first" ng-show="retrotype.value != 'W'">
+ 	         <label class="col-sm-2 control-label" for="status">Status</label>
+ 	         <div class="col-sm-8">
+						 <select class="form-control" id="status" ng-options="retroStatus.name for retroStatus in statusOptions" data-ng-model="status">
+ 						 </select>
+ 	         </div>
+ 	     </span> <br/>
+			 <button type="submit" class="btn btn-primary col-sm-4" ng-click="addComment()" ng-disabled="searchform.$invalid">
+ 	  		<span>Add</span>
+ 	  	</button>
+	 </fieldset>
+	  </div>
+	<div class="btn-group btn-group-justified" role="group" aria-label="...">
+								 <div class="btn-group" role="group">
+										 <button class="btn btn-default" type="button" ng-click="wentWell = !wentWell;improve=false;action=false">
+										 <span class="glyphicon glyphicon-ok-circle"></span>
+										 </button>
+								 </div>
+								 <div class="btn-group" role="group">
+										 <button class="btn btn-default" type="button" ng-click="improve = !improve;wentWell=false;action=false">
+											 <span class="glyphicon glyphicon-info-sign"></span></button>
+								 </div>
+								 <div class="btn-group" role="group">
+										 <button class="btn btn-default" type="button" ng-click="action = !action;improve=false;wentWell=false">
+											 <span class="glyphicon glyphicon-move"></span>
+										 </button>
+								 </div>
+						 </div>
+</div>
+<div ng-show="wentWell">
+<h4 class="ng-scope">WENT WELL</h4>
+<span class="help-block" ng-show="!wentWellComments.length">No Went Well items in this board</span>
+<div class="ocf-tiles ng-scope" ng-repeat="comment in wentWellComments">
+	 <div class="ocf-tile ocf-tile-interactive" ng-if="comment.retType == 'W'">
+		 <div class="ocf-tile-info">
+			 <div class="ocf-logo-service">
+					 <img class="glyphicon glyphicon-ok-circle" alt="" >
+			 </div>
+					 <h5 class="ocf-tile-name" ng-show="!editDesc" ng-click="editDesc = !editDesc">
+					 {{comment.retroDescription}}
+					 </h5>
+					 <span class="col-sm-6" ng-show="editDesc">
+					 	<input class="ocf-tile-name col-sm-6" id="showDesc" type="text" data-testid="input-showDesc" data-ng-model="showDesc" data-ng-class="align" data-limit="30" ng-value="comment.retroDescription">
+					 	<img class="glyphicon ocf-icon-checkbox-check" style="float:center" alt="" ng-click="updateDescription(showDesc, comment.retroId, comment.status);comment.retroDescription = showDesc;editDesc = !editDesc">
+					</span>
+			 </div>
+	 </div>
+</div>
+</div>
+<div ng-show="improve">
+<h4 class="ng-scope">TO BE IMPROVED</h4>
+<span class="help-block" ng-show="!improvements.length">No Improvement items in this board</span>
+<div class="ocf-tiles ng-scope" ng-repeat="comment in improvements">
+	<div class="ocf-tile ocf-tile-interactive" ng-if="comment.retType == 'I'">
+			<div class="ocf-logo-service">
+					<img class="glyphicon glyphicon-info-sign" alt="">
+			</div>
+			<div class="ocf-tile-info">
+					<h5 class="ocf-tile-name" ng-show="!editDescI" ng-click="editDescI = !editDescI">
+					{{comment.retroDescription}}
+					</h5>
+					<span class="col-sm-6" ng-show="editDescI">
+					 <input class="ocf-tile-name col-sm-6"  id="showDescI" type="text" data-testid="input-showDescI" data-ng-model="showDescI" data-ng-class="align" data-limit="30" ng-value="comment.retroDescription">
+					 <img class="glyphicon ocf-icon-checkbox-check" style="float:center" alt="" ng-click="updateDescription(showDescI, comment.retroId, comment.status);comment.retroDescription = showDescI;editDescI = !editDescI">
+				 </span>
+			</div>
+			<span ng-show="!statEdit" ng-click="statEdit = !statEdit" ><h5 class="ocf-tile-primary-info" style="color:darkgrey" ng-if="comment.status == 'T'">TO-DO</h5></span>
+		  <span ng-show="!statEdit" ng-click="statEdit = !statEdit" ><h5 class="ocf-tile-primary-info" style="color:orange" ng-if="comment.status == 'I'">IN PROGRESS</h5></span>
+			<span ng-show="!statEdit" ng-click="statEdit = !statEdit" ><h5 class="ocf-tile-primary-info" style="color:green" ng-if="comment.status == 'D'">DONE</h5></span>
+			<span ng-show="statEdit">
+				<img class="glyphicon ocf-icon-checkbox-check" style="float:right" alt="" ng-click="updateCommentStatus(showStatus.value, comment.retroId, comment.retroDescription);comment.status = showStatus.value;statEdit = !statEdit">
+				<select class="ocf-tile-primary-info" id="showStatus" ng-options="retroStatus.name for retroStatus in statusOptions" data-ng-model="showStatus" ng-value="comment.status">
+ 				</select>
+		  </span>
+	</div>
+</div>
+</div>
+<div ng-show="action">
+<h4 class="ng-scope">ACTION ITEMS</h4>
+<span class="help-block" ng-show="!actionItems.length">No Action items in this board</span>
+<div class="ocf-tiles ng-scope" ng-repeat="comment in actionItems">
+	<div class="ocf-tile ocf-tile-interactive" ng-if="comment.retType == 'A'">
+			<div class="ocf-logo-service">
+					<img class="glyphicon glyphicon-move" alt="" >
+			</div>
+			<div class="ocf-tile-info">
+					<h5 class="ocf-tile-name" ng-show="!editDescA" ng-click="editDescA = !editDescA">
+					{{comment.retroDescription}}
+					</h5>
+					<span class="col-sm-6" ng-show="editDescA">
+					 <input class="ocf-tile-name col-sm-6" id="showDescA" type="text" data-testid="input-showDescA" data-ng-model="showDescA" data-ng-class="align" data-limit="30" ng-value="comment.retroDescription">
+					 <img class="glyphicon ocf-icon-checkbox-check" style="float:center" alt="" ng-click="updateDescription(showDescA, comment.retroId, comment.status);comment.retroDescription = showDescA;editDescA = !editDescA">
+				 </span>
+			</div>
+			<span ng-show="!statEdit" ng-click="statEdit = !statEdit" ><h5 class="ocf-tile-primary-info" style="color:darkgrey" ng-if="comment.status == 'T'">TO-DO</h5></span>
+		  <span ng-show="!statEdit" ng-click="statEdit = !statEdit" ><h5 class="ocf-tile-primary-info" style="color:orange" ng-if="comment.status == 'I'">IN PROGRESS</h5></span>
+			<span ng-show="!statEdit" ng-click="statEdit = !statEdit" ><h5 class="ocf-tile-primary-info" style="color:green" ng-if="comment.status == 'D'">DONE</h5></span>
+			<span ng-show="statEdit">
+				<img class="glyphicon ocf-icon-checkbox-check" style="float:right" alt="" ng-click="updateCommentStatus(showStatus.value, comment.retroId, comment.retroDescription);comment.status = showStatus.value;statEdit = !statEdit">
+			 <select class="ocf-tile-primary-info" id="showStatus" ng-options="retroStatus.name for retroStatus in statusOptions" data-ng-model="showStatus" ng-value="comment.status">
+		   </select>
+      </span>
+	</div>
+</div>
+</div>

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+
+      <title>RetroLite</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+      <meta http-equiv="cache-control" content="no-cache" />
+      <meta http-equiv="expires" content="0" />
+      <meta http-equiv="pragma" content="no-cache" />
+      <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type" />
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- code to prevent clickjacking starts, Don't use it in case of loading application in IFRAME -->
+      <!-- <meta http-equiv="X-Frame-Options" content="deny" /> -->
+      <style id="antiClickjack">
+          body {
+              display: none !important;
+          }
+      </style>
+      <script type="text/javascript">
+          if (self === top) {
+              var antiClickjack = document.getElementById("antiClickjack");
+              antiClickjack.parentNode.removeChild(antiClickjack);
+          } else {
+              top.location = self.location;
+          }
+      </script>
+      <!--clickjacking code finish -->
+      <!--    Link to favicon icon from LiWid -->
+      <link rel="shortcut icon" href="assets/imgs/favicon.ico">
+
+      <!--    Liwid stylesheets for Responsive Web Applications as per ABN AMRO Standards-->
+      <!-- build:css assets/styles/liwid.min.css -->
+        <link rel="stylesheet" href="../liwid/styles/css/core.css" media="screen">
+        <link rel="stylesheet" href="../liwid/styles/css/liwid.css" media="screen">
+      <!-- endbuild -->
+
+        <!--    App specific stylesheet-->
+      <!-- build:css assets/styles/app.min.css -->
+      <link rel="stylesheet" href="app.css" media="screen">
+      <link rel="stylesheet" href="../liwid/lib/angular/tablesort/tablesort.css" media="screen">
+      <!-- endbuild -->
+            <!--    Table Sort directive specific stylesheet-->
+            <!-- Load all generic libraries below -->
+      <!-- build:js assets/scripts/liwid.js -->
+      <script src="../liwid/lib/jquery/1.12.3/jquery.min.js"></script>
+      <script src="../liwid/lib/angular/1.5.3/angular.min.js"></script>
+      <script src="../liwid/lib/angular/1.5.3/angular-route.min.js"></script>
+      <script src="../liwid/lib/angular/1.5.3/angular-resource.min.js"></script>
+      <script src="../liwid/lib/angular/gettext/angular-gettext.js"></script>
+      <script src="../liwid/lib/angular/ui-bootstrap/1.3.2/ui-bootstrap-tpls-1.3.2.js"></script>
+      <script src="../liwid/lib/angular/spinner/spin.min.js"></script>
+      <script src="../liwid/lib/angular/spinner/angular-spinner.min.js"></script>
+      <script src="../liwid/lib/javascript/Table2Excel/FileSaver.js"></script>
+      <!-- endbuild -->
+
+      <!-- Load all application scripts below -->
+      <!-- build:js assets/scripts/app.js -->
+      <script src="app.module.js"></script>
+      <script src="app.config.js"></script>
+      <script src="app.run.js"></script>
+      <script src="app.constants.js"></script>
+      <script src="core/core.module.js"></script>
+      <script src="core/msec-authentication/msec-authentication.module.js"></script>
+      <script src="core/msec-authentication/msec-authentication.config.js"></script>
+      <script src="core/msec-authentication/msec-authentication.controller.js"></script>
+      <script src="core/multi-language/multi-language.module.js"></script>
+      <script src="core/multi-language/multi-language.run.js"></script>
+      <script src="core/multi-language/multi-language.values.js"></script>
+      <script src="core/multi-language/multi-language.constants.js"></script>
+      <script src="core/http-error-handling/http-error-handling.module.js"></script>
+      <script src="core/http-error-handling/http-error-handling.service.js"></script>
+      <script src="core/app-cache/app-cache.module.js"></script>
+      <script src="core/app-cache/app-cache.service.js"></script>
+      <script src="core/header/header.module.js"></script>
+      <script src="core/header/header.directive.js"></script>
+      <script src="core/client/client.module.js"></script>
+      <script src="core/client/client.service.js"></script>
+      <script src="retroLogin/retro-login.module.js"></script>
+      <script src="retroLogin/retro-login.config.js"></script>
+      <script src="retroLogin/retro-login.controller.js"></script>
+
+      <script src="retroStart/retro-start.module.js"></script>
+      <script src="retroStart/retro-start.config.js"></script>
+      <script src="retroStart/retro-start.controller.js"></script>
+
+      <script src="createUser/create-user.module.js"></script>
+      <script src="createUser/create-user.config.js"></script>
+      <script src="createUser/create-user.controller.js"></script>
+
+      <script src="retroHome/retro-home.module.js"></script>
+      <script src="retroHome/retro-home.config.js"></script>
+      <script src="retroHome/retro-home.controller.js"></script>
+
+      <script src="boardDetails/board-details.module.js"></script>
+      <script src="boardDetails/board-details.config.js"></script>
+      <script src="boardDetails/board-details.controller.js"></script>
+
+      <!-- endbuild -->
+  </head>
+
+  <body ng-app="retroApp" ng-strict-di>
+
+    <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span>
+
+    <aab-header></aab-header>
+    <div class="ocf-curtain hidden-lg hidden-md" style="height: 0px;"></div>
+
+    <div id="main" class="container-fluid" role="main" style="height: auto; overflow: visible;">
+      <div class="ng-scope">
+          <div class="row">
+              <div class="col-lg-12">
+                  <div class="row">
+                      <div class="col-md-10 col-md-offset-1">
+                          <div ng-view class="container-fluid ng-scope printSection">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
